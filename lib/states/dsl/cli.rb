@@ -7,7 +7,6 @@ module States
 
      desc "parse FILE", "Convert a state machine file"
      def parse(file)
-       puts Dir.pwd
        puts Dsl.parse(file).first.to_json
      end
 
