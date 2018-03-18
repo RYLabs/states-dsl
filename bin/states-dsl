@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require "states/dsl/cli"
+
+ARGV.unshift('parse')
+States::Dsl::CLI.start
