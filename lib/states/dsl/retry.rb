@@ -3,8 +3,13 @@ module States
     class Retry
       include States::Dsl::ErrorSupport
 
-      def initialize(options={})
-        @error_equals = ensure_errors_array(options[:error_equals])
+      def initialize(*arguments)
+        options = arguments.is_a?(Hash) ? arguments.pop : {}
+        @error_equals = if arguments.length > 0
+          ensure_errors_array(arguments.first)
+        else
+          ensure_errors_array(options[:error_equals])
+        end
         @max_attempts = options[:max_attempts]
         @backoff_rate = options[:backoff_rate]
         @interval_seconds = options[:interval_seconds]
