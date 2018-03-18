@@ -1,8 +1,8 @@
 module States
   module Dsl
     class Fail
-      def type(type)
-        @type = type
+      def initialize(error=nil,cause=nil)
+        @error, @cause = error, cause
       end
 
       def error(err)
@@ -15,7 +15,6 @@ module States
 
       def serializable_hash
         h = {}
-        h["Type"] = @type if @type
         h["Error"] = @error if @error
         h["Cause"] = @cause if @cause
         h
