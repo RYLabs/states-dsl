@@ -4,7 +4,7 @@ module States
       include States::Dsl::ErrorSupport
 
       def initialize(*arguments)
-        options = arguments.is_a?(Hash) ? arguments.pop : {}
+        options = arguments.last.is_a?(Hash) ? arguments.pop : {}
         @error_equals = if arguments.length > 0
           ensure_errors_array(arguments.first)
         else

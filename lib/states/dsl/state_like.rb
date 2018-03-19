@@ -64,8 +64,8 @@ module States
         @fail
       end
 
-      def retry_if(options={}, &block)
-        _retry = Retry.new(options)
+      def retry_if(*arguments, &block)
+        _retry = Retry.new(*arguments)
         if block_given?
           _retry.instance_eval(&block)
         end
