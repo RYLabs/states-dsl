@@ -12,7 +12,9 @@ module States
       def serializable_hash
         json = super
         json["Type"] ||= "Pass"
-        json["End"] = true if json["Next"].nil? && json["Type"] != "Choice"
+        if json["Next"].nil? && !%w(Choice Fail).include?(json["Type"])
+          json["End"] = true
+        end
         json
       end
     end
